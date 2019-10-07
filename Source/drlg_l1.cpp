@@ -537,54 +537,57 @@ void DRLG_PlaceDoor(int x, int y)
 	if ((L5dflags[x][y] & DLRG_PROTECTED) == 0) {
 		BYTE df = L5dflags[x][y] & 0x7F;
 		BYTE c = dungeon[x][y];
-
+		
+		//else if para diminuir o número de checagens 
+		
 		if (df == 1) {
 			if (y != 1 && c == 2)
 				dungeon[x][y] = 26;
-			if (y != 1 && c == 7)
+			else if (y != 1 && c == 7)
 				dungeon[x][y] = 31;
-			if (y != 1 && c == 14)
+			else if (y != 1 && c == 14)
 				dungeon[x][y] = 42;
-			if (y != 1 && c == 4)
+			else if (y != 1 && c == 4)
 				dungeon[x][y] = 43;
 			if (x != 1 && c == 1)
 				dungeon[x][y] = 25;
-			if (x != 1 && c == 10)
+			else if (x != 1 && c == 10)
 				dungeon[x][y] = 40;
-			if (x != 1 && c == 6)
+			else if (x != 1 && c == 6)
 				dungeon[x][y] = 30;
 		}
-		if (df == 2) {
+		else if (df == 2) {
 			if (x != 1 && c == 1)
 				dungeon[x][y] = 25;
-			if (x != 1 && c == 6)
+			else if (x != 1 && c == 6)
 				dungeon[x][y] = 30;
-			if (x != 1 && c == 10)
+			else if (x != 1 && c == 10)
 				dungeon[x][y] = 40;
-			if (x != 1 && c == 4)
+			else if (x != 1 && c == 4)
 				dungeon[x][y] = 41;
 			if (y != 1 && c == 2)
 				dungeon[x][y] = 26;
-			if (y != 1 && c == 14)
+			else if (y != 1 && c == 14)
 				dungeon[x][y] = 42;
-			if (y != 1 && c == 7)
+			else if (y != 1 && c == 7)
 				dungeon[x][y] = 31;
 		}
-		if (df == 3) {
+		else if (df == 3) {
 			if (x != 1 && y != 1 && c == 4)
 				dungeon[x][y] = 28;
-			if (x != 1 && c == 10)
+			else if (x != 1 && c == 10)
 				dungeon[x][y] = 40;
+			else if (x != 1 && c == 1)
+				dungeon[x][y] = 25;
+			else if (x != 1 && c == 6)
+				dungeon[x][y] = 30;
 			if (y != 1 && c == 14)
 				dungeon[x][y] = 42;
-			if (y != 1 && c == 2)
-				dungeon[x][y] = 26;
-			if (x != 1 && c == 1)
-				dungeon[x][y] = 25;
-			if (y != 1 && c == 7)
+			else if (y != 1 && c == 2)
+				dungeon[x][y] = 26;			
+			else if (y != 1 && c == 7)
 				dungeon[x][y] = 31;
-			if (x != 1 && c == 6)
-				dungeon[x][y] = 30;
+			
 		}
 	}
 
@@ -608,13 +611,15 @@ void DRLG_L1Shadows()
 			for (i = 0; i < 37; i++) {
 				if (SPATS[i].strig == sd[0][0]) {
 					patflag = TRUE;
+					// else if para diminuir comparações
 					if (SPATS[i].s1 && SPATS[i].s1 != sd[1][1])
 						patflag = FALSE;
-					if (SPATS[i].s2 && SPATS[i].s2 != sd[0][1])
+					else if (SPATS[i].s2 && SPATS[i].s2 != sd[0][1])
 						patflag = FALSE;
-					if (SPATS[i].s3 && SPATS[i].s3 != sd[1][0])
+					else if (SPATS[i].s3 && SPATS[i].s3 != sd[1][0])
 						patflag = FALSE;
-					if (patflag == TRUE) {
+					// remoção da verificação
+					else {
 						if (SPATS[i].nv1 && !L5dflags[x - 1][y - 1])
 							dungeon[x - 1][y - 1] = SPATS[i].nv1;
 						if (SPATS[i].nv2 && !L5dflags[x][y - 1])
@@ -629,51 +634,55 @@ void DRLG_L1Shadows()
 
 	for (y = 1; y < DMAXY; y++) {
 		for (x = 1; x < DMAXX; x++) {
+			// else if para diminuir comparações
 			if (dungeon[x - 1][y] == 139 && !L5dflags[x - 1][y]) {
 				tnv3 = 139;
+				// else if para diminuir comparações
 				if (dungeon[x][y] == 29)
 					tnv3 = 141;
-				if (dungeon[x][y] == 32)
+				else if (dungeon[x][y] == 32)
 					tnv3 = 141;
-				if (dungeon[x][y] == 35)
+				else if (dungeon[x][y] == 35)
 					tnv3 = 141;
-				if (dungeon[x][y] == 37)
+				else if (dungeon[x][y] == 37)
 					tnv3 = 141;
-				if (dungeon[x][y] == 38)
+				else if (dungeon[x][y] == 38)
 					tnv3 = 141;
-				if (dungeon[x][y] == 39)
+				else if (dungeon[x][y] == 39)
 					tnv3 = 141;
 				dungeon[x - 1][y] = tnv3;
 			}
-			if (dungeon[x - 1][y] == 149 && !L5dflags[x - 1][y]) {
+			else if (dungeon[x - 1][y] == 149 && !L5dflags[x - 1][y]) {
 				tnv3 = 149;
+				// else if para diminuir comparações
 				if (dungeon[x][y] == 29)
 					tnv3 = 153;
-				if (dungeon[x][y] == 32)
+				else if (dungeon[x][y] == 32)
 					tnv3 = 153;
-				if (dungeon[x][y] == 35)
+				else if (dungeon[x][y] == 35)
 					tnv3 = 153;
-				if (dungeon[x][y] == 37)
+				else if (dungeon[x][y] == 37)
 					tnv3 = 153;
-				if (dungeon[x][y] == 38)
+				else if (dungeon[x][y] == 38)
 					tnv3 = 153;
-				if (dungeon[x][y] == 39)
+				else if (dungeon[x][y] == 39)
 					tnv3 = 153;
 				dungeon[x - 1][y] = tnv3;
 			}
-			if (dungeon[x - 1][y] == 148 && !L5dflags[x - 1][y]) {
+			else if (dungeon[x - 1][y] == 148 && !L5dflags[x - 1][y]) {
 				tnv3 = 148;
+				// else if para diminuir comparações
 				if (dungeon[x][y] == 29)
 					tnv3 = 154;
-				if (dungeon[x][y] == 32)
+				else if (dungeon[x][y] == 32)
 					tnv3 = 154;
-				if (dungeon[x][y] == 35)
+				else if (dungeon[x][y] == 35)
 					tnv3 = 154;
-				if (dungeon[x][y] == 37)
+				else if (dungeon[x][y] == 37)
 					tnv3 = 154;
-				if (dungeon[x][y] == 38)
+				else if (dungeon[x][y] == 38)
 					tnv3 = 154;
-				if (dungeon[x][y] == 39)
+				else if (dungeon[x][y] == 39)
 					tnv3 = 154;
 				dungeon[x - 1][y] = tnv3;
 			}
