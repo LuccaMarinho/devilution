@@ -1,9 +1,10 @@
 #include "diablo.h"
-
+//new define
+#define maxPalette 256
 void CaptureScreen()
 {
 	HANDLE hObject;
-	PALETTEENTRY palette[256];
+	PALETTEENTRY palette[maxPalette];
 	char FileName[MAX_PATH];
 	BOOL success;
 
@@ -11,9 +12,9 @@ void CaptureScreen()
 	if (hObject != INVALID_HANDLE_VALUE) {
 		DrawAndBlit();
 #ifdef __cplusplus
-		lpDDPalette->GetEntries(0, 0, 256, palette);
+		lpDDPalette->GetEntries(0, 0, maxPalette, palette);
 #else
-		lpDDPalette->lpVtbl->GetEntries(lpDDPalette, 0, 0, 256, palette);
+		lpDDPalette->lpVtbl->GetEntries(lpDDPalette, 0, 0, maxPalette, palette);
 #endif
 		RedPalette(palette);
 
@@ -33,9 +34,9 @@ void CaptureScreen()
 
 		Sleep(300);
 #ifdef __cplusplus
-		lpDDPalette->SetEntries(0, 0, 256, palette);
+		lpDDPalette->SetEntries(0, 0, maxPalette, palette);
 #else
-		lpDDPalette->lpVtbl->SetEntries(lpDDPalette, 0, 0, 256, palette);
+		lpDDPalette->lpVtbl->SetEntries(lpDDPalette, 0, 0, maxPalette, palette);
 #endif
 	}
 }
@@ -67,7 +68,7 @@ BOOL CapturePal(HANDLE hFile, PALETTEENTRY *palette)
 	int i;
 
 	pcx_palette[0] = 12;
-	for (i = 0; i < 256; i++) {
+	for (i = 0; i < maxPalette; i++) {
 		pcx_palette[1 + 3 * i + 0] = palette[i].peRed;
 		pcx_palette[1 + 3 * i + 1] = palette[i].peGreen;
 		pcx_palette[1 + 3 * i + 2] = palette[i].peBlue;
@@ -160,10 +161,10 @@ HANDLE CaptureFile(char *dst_path)
 
 void RedPalette(PALETTEENTRY *pal)
 {
-	PALETTEENTRY red[256];
+	PALETTEENTRY red[maxPalette];
 	int i;
 
-	for (i = 0; i < 256; i++) {
+	for (i = 0; i < maxPalette; i++) {
 		red[i].peRed = pal[i].peRed;
 		red[i].peGreen = 0;
 		red[i].peBlue = 0;
@@ -171,8 +172,8 @@ void RedPalette(PALETTEENTRY *pal)
 	}
 
 #ifdef __cplusplus
-	lpDDPalette->SetEntries(0, 0, 256, red);
+	lpDDPalette->SetEntries(0, 0, maxPalette, red);
 #else
-	lpDDPalette->lpVtbl->SetEntries(lpDDPalette, 0, 0, 256, red);
+	lpDDPalette->lpVtbl->SetEntries(lpDDPalette, 0, 0, maxPalette, red);
 #endif
 }
