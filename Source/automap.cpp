@@ -33,11 +33,12 @@ int AMPlayerY;
 #define MAPFLAG_HORZGRATE 0x20
 #define MAPFLAG_SQUARE 0x40
 #define MAPFLAG_STAIRS 0x80
-
+//novo define
+#define initAutoMapScale 50
 void InitAutomapOnce()
 {
 	automapflag = FALSE;
-	AutoMapScale = 50;
+	AutoMapScale = initAutoMapScale;
 	AutoMapPosBits = 32;
 	AutoMapXPos = 16;
 	AutoMapYPos = 8;
@@ -53,8 +54,8 @@ void InitAutomap()
 	BYTE *pAFile, *pTmp;
 	int i, j;
 	int d;
-
-	j = 50;
+	//substituição de número mágico
+	j = initAutoMapScale;
 
 	for (i = 0; i < 31; i++) {
 		d = (j << 6) / 100;
@@ -148,7 +149,8 @@ void AutomapZoomIn()
 
 void AutomapZoomOut()
 {
-	if (AutoMapScale > 50) {
+	//substituição de número mágico
+	if (AutoMapScale > initAutoMapScale) {
 		AutoMapScale -= 5;
 		AutoMapPosBits = (AutoMapScale << 6) / 100;
 		AutoMapXPos = AutoMapPosBits >> 1;
@@ -185,8 +187,9 @@ void DrawAutomap()
 	while (MapY + AutoMapYOfs >= DMAXY)
 		AutoMapYOfs--;
 	MapY += AutoMapYOfs;
-
-	cells = AmShiftTab[(AutoMapScale - 50) / 5];
+	
+	//substituição de número mágico
+	cells = AmShiftTab[(AutoMapScale - initAutoMapScale) / 5];
 	if (ScrollInfo._sxoff + ScrollInfo._syoff)
 		cells++;
 	mapx = MapX - cells;
@@ -551,7 +554,7 @@ void DrawAutomapGame()
 		if (szPlayerDescript[0]) {
 			strcat(strcpy(desc, "password: "), szPlayerDescript);
 			PrintGameStr(8, 35, desc, COL_GOLD);
-			nextline = 50;
+			nextline = initAutoMapScale;
 		}
 	}
 	if (setlevel)
