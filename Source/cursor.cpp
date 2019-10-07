@@ -115,26 +115,30 @@ void InitLevelCursor()
 
 void CheckTown()
 {
-	int i, mx;
-
+	int i, mx;	
 	for (i = 0; i < nummissiles; i++) {
 		mx = missileactive[i];
-		if (missile[mx]._mitype == MIS_TOWN) {
-			if (cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy
+		
+		//nova variavel
+		bool isCursmxTrue = 
+			      (cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy
 			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 2 && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 2 && cursmy == missile[mx]._miy - 2
 			    || cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy - 2
-			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy) {
-				trigflag = TRUE;
-				ClearPanel();
-				strcpy(infostr, "Town Portal");
-				sprintf(tempstr, "from %s", plr[missile[mx]._misource]._pName);
-				AddPanelString(tempstr, TRUE);
-				cursmx = missile[mx]._mix;
-				cursmy = missile[mx]._miy;
-			}
+			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy);
+		
+		// if reduzido
+		if ((missile[mx]._mitype == MIS_TOWN) && isCursmxTrue) {
+			trigflag = TRUE;
+			ClearPanel();
+			strcpy(infostr, "Town Portal");
+			sprintf(tempstr, "from %s", plr[missile[mx]._misource]._pName);
+			AddPanelString(tempstr, TRUE);
+			cursmx = missile[mx]._mix;
+			cursmy = missile[mx]._miy;
+
 		}
 	}
 }
@@ -145,25 +149,29 @@ void CheckRportal()
 
 	for (i = 0; i < nummissiles; i++) {
 		mx = missileactive[i];
-		if (missile[mx]._mitype == MIS_RPORTAL) {
-			if (cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy
+		//nova variavel
+		bool isCursmxTrue =
+			      (cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy
 			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 2 && cursmy == missile[mx]._miy - 1
 			    || cursmx == missile[mx]._mix - 2 && cursmy == missile[mx]._miy - 2
 			    || cursmx == missile[mx]._mix - 1 && cursmy == missile[mx]._miy - 2
-			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy) {
-				trigflag = TRUE;
-				ClearPanel();
-				strcpy(infostr, "Portal to");
-				if (!setlevel)
-					strcpy(tempstr, "The Unholy Altar");
-				else
-					strcpy(tempstr, "level 15");
-				AddPanelString(tempstr, TRUE);
-				cursmx = missile[mx]._mix;
-				cursmy = missile[mx]._miy;
-			}
+			    || cursmx == missile[mx]._mix && cursmy == missile[mx]._miy);
+		
+		// if reduzido	
+		if ((missile[mx]._mitype == MIS_RPORTAL) && isCursmxTrue) {
+			
+			trigflag = TRUE;
+			ClearPanel();
+			strcpy(infostr, "Portal to");
+			if (!setlevel)
+				strcpy(tempstr, "The Unholy Altar");
+			else
+				strcpy(tempstr, "level 15");
+			AddPanelString(tempstr, TRUE);
+			cursmx = missile[mx]._mix;
+			cursmy = missile[mx]._miy;
 		}
 	}
 }
