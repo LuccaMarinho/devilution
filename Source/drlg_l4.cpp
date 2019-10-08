@@ -416,32 +416,18 @@ void DRLG_LoadDiabQuads(BOOL preflag)
 }
 
 BOOL IsDURWall(char d)
-{
-	if (d == 25) {
+{	
+	//unificação de 3 if's
+	if (d == 25 || d == 28 || d == 23)
 		return TRUE;
-	}
-	if (d == 28) {
-		return TRUE;
-	}
-	if (d == 23) {
-		return TRUE;
-	}
-
 	return FALSE;
 }
 
 BOOL IsDLLWall(char dd)
 {
-	if (dd == 27) {
+	//unificação de 3 if's
+	if (dd == 27 || dd == 26 || dd == 22) 
 		return TRUE;
-	}
-	if (dd == 26) {
-		return TRUE;
-	}
-	if (dd == 22) {
-		return TRUE;
-	}
-
 	return FALSE;
 }
 
@@ -654,19 +640,11 @@ void DRLG_L4Shadows()
 	for (y = 1; y < DMAXY; y++) {
 		for (x = 1; x < DMAXY; x++) {
 			okflag = FALSE;
-			if (dungeon[x][y] == 3) {
+			bool isDungeonTrue = (dungeon[x][y] == 3 || dungeon[x][y] == 4 || dungeon[x][y] == 8 || dungeon[x][y] == 15);
+			if (isDungeonTrue) {
 				okflag = TRUE;
 			}
-			if (dungeon[x][y] == 4) {
-				okflag = TRUE;
-			}
-			if (dungeon[x][y] == 8) {
-				okflag = TRUE;
-			}
-			if (dungeon[x][y] == 15) {
-				okflag = TRUE;
-			}
-			if (!okflag) {
+			else if (!okflag) {
 				continue;
 			}
 			if (dungeon[x - 1][y] == 6) {
@@ -718,91 +696,92 @@ void L4AddWall()
 			if (dflags[i][j] != 0) {
 				continue;
 			}
+			// substituição de if's por else if
 			if (dungeon[i][j] == 10 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 12 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 12 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 13 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 13 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 15 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 15 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 16 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 16 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 21 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 21 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 22 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 22 && random(0, 100) < 100) {
 				x = L4HWallOk(i, j);
 				if (x != -1) {
 					L4HorizWall(i, j, x);
 				}
 			}
-			if (dungeon[i][j] == 8 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 8 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 9 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 9 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 11 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 11 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 14 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 14 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 15 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 15 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 16 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 16 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 21 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 21 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
 				}
 			}
-			if (dungeon[i][j] == 23 && random(0, 100) < 100) {
+			else if (dungeon[i][j] == 23 && random(0, 100) < 100) {
 				y = L4VWallOk(i, j);
 				if (y != -1) {
 					L4VertWall(i, j, y);
@@ -830,26 +809,26 @@ int L4HWallOk(int i, int j)
 	}
 
 	wallok = FALSE;
-
+	// substituição de if's por else if
 	if (dungeon[i + x][j] == 10) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 12) {
+	else if (dungeon[i + x][j] == 12) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 13) {
+	else if (dungeon[i + x][j] == 13) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 15) {
+	else if (dungeon[i + x][j] == 15) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 16) {
+	else if (dungeon[i + x][j] == 16) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 21) {
+	else if (dungeon[i + x][j] == 21) {
 		wallok = TRUE;
 	}
-	if (dungeon[i + x][j] == 22) {
+	else if (dungeon[i + x][j] == 22) {
 		wallok = TRUE;
 	}
 	if (x <= 3) {
@@ -881,29 +860,29 @@ int L4VWallOk(int i, int j)
 	}
 
 	wallok = FALSE;
-
+	// substituição de if's por else if
 	if (dungeon[i][j + y] == 8) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 9) {
+	else if (dungeon[i][j + y] == 9) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 11) {
+	else if (dungeon[i][j + y] == 11) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 14) {
+	else if (dungeon[i][j + y] == 14) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 15) {
+	else if (dungeon[i][j + y] == 15) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 16) {
+	else if (dungeon[i][j + y] == 16) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 21) {
+	else if (dungeon[i][j + y] == 21) {
 		wallok = TRUE;
 	}
-	if (dungeon[i][j + y] == 23) {
+	else if (dungeon[i][j + y] == 23) {
 		wallok = TRUE;
 	}
 	if (y <= 3) {
@@ -920,14 +899,14 @@ int L4VWallOk(int i, int j)
 void L4HorizWall(int i, int j, int dx)
 {
 	int xx;
-
+	// substituição de if's por else if
 	if (dungeon[i][j] == 13) {
 		dungeon[i][j] = 17;
 	}
-	if (dungeon[i][j] == 16) {
+	else if (dungeon[i][j] == 16) {
 		dungeon[i][j] = 11;
 	}
-	if (dungeon[i][j] == 12) {
+	else if (dungeon[i][j] == 12) {
 		dungeon[i][j] = 14;
 	}
 
@@ -938,13 +917,13 @@ void L4HorizWall(int i, int j, int dx)
 	if (dungeon[i + dx][j] == 15) {
 		dungeon[i + dx][j] = 14;
 	}
-	if (dungeon[i + dx][j] == 10) {
+	else if (dungeon[i + dx][j] == 10) {
 		dungeon[i + dx][j] = 17;
 	}
-	if (dungeon[i + dx][j] == 21) {
+	else if (dungeon[i + dx][j] == 21) {
 		dungeon[i + dx][j] = 23;
 	}
-	if (dungeon[i + dx][j] == 22) {
+	else if (dungeon[i + dx][j] == 22) {
 		dungeon[i + dx][j] = 29;
 	}
 
@@ -964,14 +943,14 @@ void L4HorizWall(int i, int j, int dx)
 void L4VertWall(int i, int j, int dy)
 {
 	int yy;
-
+	// substituição de if's por else if
 	if (dungeon[i][j] == 14) {
 		dungeon[i][j] = 17;
 	}
-	if (dungeon[i][j] == 8) {
+	else if (dungeon[i][j] == 8) {
 		dungeon[i][j] = 9;
 	}
-	if (dungeon[i][j] == 15) {
+	else if (dungeon[i][j] == 15) {
 		dungeon[i][j] = 10;
 	}
 
@@ -982,16 +961,16 @@ void L4VertWall(int i, int j, int dy)
 	if (dungeon[i][j + dy] == 11) {
 		dungeon[i][j + dy] = 17;
 	}
-	if (dungeon[i][j + dy] == 9) {
+	else if (dungeon[i][j + dy] == 9) {
 		dungeon[i][j + dy] = 10;
 	}
-	if (dungeon[i][j + dy] == 16) {
+	else if (dungeon[i][j + dy] == 16) {
 		dungeon[i][j + dy] = 13;
 	}
-	if (dungeon[i][j + dy] == 21) {
+	else if (dungeon[i][j + dy] == 21) {
 		dungeon[i][j + dy] = 22;
 	}
-	if (dungeon[i][j + dy] == 23) {
+	else if (dungeon[i][j + dy] == 23) {
 		dungeon[i][j + dy] = 29;
 	}
 
@@ -1014,331 +993,336 @@ void L4tileFix()
 
 	for (j = 0; j < DMAXY; j++) {
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 6)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 13;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 14;
 		}
 	}
 	for (j = 0; j < DMAXY; j++) {
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 6)
 				dungeon[i + 1][j] = 2;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 6)
+			else if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 6)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 13;
-			if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 14)
+			else if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 14)
 				dungeon[i + 1][j] = 15;
-			if (dungeon[i][j] == 6 && dungeon[i][j + 1] == 13)
+			else if (dungeon[i][j] == 6 && dungeon[i][j + 1] == 13)
 				dungeon[i][j + 1] = 16;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 6 && dungeon[i][j - 1] == 1)
+			else if (dungeon[i][j] == 6 && dungeon[i][j - 1] == 1)
 				dungeon[i][j - 1] = 1;
 		}
 	}
 	for (j = 0; j < DMAXY; j++) {
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 27;
 			if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 27;
-			if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 27)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 27)
 				dungeon[i + 1][j] = 26;
-			if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 15)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 15)
 				dungeon[i + 1][j] = 14;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 15)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 15)
 				dungeon[i + 1][j] = 14;
-			if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] != 0) /* check */
+			else if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] != 0) /* check */
 				dungeon[i + 1][j] = 22;
-			if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 1 && dungeon[i + 1][j - 1] == 1)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 1 && dungeon[i + 1][j - 1] == 1)
 				dungeon[i + 1][j] = 13;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 30 && dungeon[i][j + 1] == 6)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 30 && dungeon[i][j + 1] == 6)
 				dungeon[i + 1][j] = 28;
-			if (dungeon[i][j] == 16 && dungeon[i + 1][j] == 6 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 16 && dungeon[i + 1][j] == 6 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 27;
-			if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 30 && dungeon[i + 1][j + 1] == 30)
+			else if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 30 && dungeon[i + 1][j + 1] == 30)
 				dungeon[i][j + 1] = 27;
-			if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 30 && dungeon[i + 1][j - 1] == 6)
+			else if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 30 && dungeon[i + 1][j - 1] == 6)
 				dungeon[i + 1][j] = 21;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 9)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 9)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 15)
+			else if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 15)
 				dungeon[i + 1][j] = 14;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 2)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 2)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 18)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 18)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 15)
+			else if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 15)
 				dungeon[i + 1][j] = 14;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 19 && dungeon[i + 1][j - 1] == 30)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 19 && dungeon[i + 1][j - 1] == 30)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 24 && dungeon[i][j - 1] == 30 && dungeon[i][j - 2] == 6)
+			else if (dungeon[i][j] == 24 && dungeon[i][j - 1] == 30 && dungeon[i][j - 2] == 6)
 				dungeon[i][j - 1] = 21;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 28;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 28;
-			if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 1)
+			else if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 1)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 22 && dungeon[i + 1][j + 1] == 1)
+			else if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 22 && dungeon[i + 1][j + 1] == 1)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 13)
+			else if (dungeon[i][j] == 19 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 13)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 21 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 1)
+			else if (dungeon[i][j] == 21 && dungeon[i + 2][j] == 2 && dungeon[i + 1][j - 1] == 18 && dungeon[i + 1][j + 1] == 1)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j + 1] == 1 && dungeon[i + 1][j - 1] == 22 && dungeon[i + 2][j] == 3)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j + 1] == 1 && dungeon[i + 1][j - 1] == 22 && dungeon[i + 2][j] == 3)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 30 && dungeon[i + 1][j - 1] == 6)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 30 && dungeon[i + 1][j - 1] == 6)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 1)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 1)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 30)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 30)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 28 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j - 1] == 21)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j - 1] == 21)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 30)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 30)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 18)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 18)
 				dungeon[i + 1][j] = 25;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9 && dungeon[i + 2][j] == 2)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9 && dungeon[i + 2][j] == 2)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 10)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 10)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 15 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 15 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 24 && dungeon[i - 1][j] == 30)
+			else if (dungeon[i][j] == 24 && dungeon[i - 1][j] == 30)
 				dungeon[i - 1][j] = 19;
-			if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 18 && dungeon[i + 2][j] == 30)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 18 && dungeon[i + 2][j] == 30)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9 && dungeon[i + 1][j + 1] == 1)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9 && dungeon[i + 1][j + 1] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 2)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 27 && dungeon[i + 1][j + 1] == 2)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 22 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 15)
+			else if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 15)
 				dungeon[i + 1][j] = 14;
-			if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 27)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 27)
 				dungeon[i + 1][j] = 26;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 18)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 18)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 26 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 26 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 29 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 29 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 15)
+			else if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 15)
 				dungeon[i][j - 1] = 10;
-			if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 23 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 30 && dungeon[i + 1][j + 1] == 30)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 30 && dungeon[i + 1][j + 1] == 30)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 28 && dungeon[i + 1][j - 1] == 6)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 28 && dungeon[i + 1][j - 1] == 6)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 18 && dungeon[i][j - 1] == 6)
+			else if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 18 && dungeon[i][j - 1] == 6)
 				dungeon[i + 1][j] = 24;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 23 && dungeon[i + 2][j] == 30)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 23 && dungeon[i + 2][j] == 30)
 				dungeon[i + 1][j] = 28;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 30 && dungeon[i + 1][j - 1] == 6)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 30 && dungeon[i + 1][j - 1] == 6)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 23 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 29 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 29 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 26 && dungeon[i + 1][j] == 30)
+			else if (dungeon[i][j] == 26 && dungeon[i + 1][j] == 30)
 				dungeon[i + 1][j] = 19;
-			if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 30)
+			else if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 30)
 				dungeon[i][j + 1] = 18;
-			if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 2)
+			else if (dungeon[i][j] == 18 && dungeon[i][j + 1] == 2)
 				dungeon[i][j + 1] = 15;
-			if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 13;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 13 && dungeon[i + 1][j - 1] == 6)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 13 && dungeon[i + 1][j - 1] == 6)
 				dungeon[i + 1][j] = 16;
 		}
 	}
 	for (j = 0; j < DMAXY; j++) {
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (dungeon[i][j] == 21 && dungeon[i][j + 1] == 24 && dungeon[i][j + 2] == 1)
 				dungeon[i][j + 1] = 17;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j + 1] == 9 && dungeon[i + 1][j - 1] == 1 && dungeon[i + 2][j] == 16)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j + 1] == 9 && dungeon[i + 1][j - 1] == 1 && dungeon[i + 2][j] == 16)
 				dungeon[i + 1][j] = 29;
-			if (dungeon[i][j] == 2 && dungeon[i - 1][j] == 6)
+			else if (dungeon[i][j] == 2 && dungeon[i - 1][j] == 6)
 				dungeon[i - 1][j] = 8;
-			if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 6)
+			else if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 6)
 				dungeon[i][j - 1] = 7;
-			if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 15 && dungeon[i + 1][j + 1] == 4)
+			else if (dungeon[i][j] == 6 && dungeon[i + 1][j] == 15 && dungeon[i + 1][j + 1] == 4)
 				dungeon[i + 1][j] = 10;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 6)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 6)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 9 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 9 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 10 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 10 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 16)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 16)
 				dungeon[i][j + 1] = 13;
-			if (dungeon[i][j] == 6 && dungeon[i][j + 1] == 13)
+			else if (dungeon[i][j] == 6 && dungeon[i][j + 1] == 13)
 				dungeon[i][j + 1] = 16;
-			if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 25 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 28 && dungeon[i][j - 1] == 6 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 28 && dungeon[i][j - 1] == 6 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 10)
+			else if (dungeon[i][j] == 19 && dungeon[i + 1][j] == 10)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 9)
+			else if (dungeon[i][j] == 27 && dungeon[i + 1][j] == 9)
 				dungeon[i + 1][j] = 11;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 1)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 1)
 				dungeon[i + 1][j] = 16;
-			if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 11 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 14 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 3)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 3)
 				dungeon[i + 1][j] = 5;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 5 && dungeon[i + 1][j - 1] == 16)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 5 && dungeon[i + 1][j - 1] == 16)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 2 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 9 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 8)
+			else if (dungeon[i][j] == 1 && dungeon[i][j - 1] == 8)
 				dungeon[i][j - 1] = 9;
-			if (dungeon[i][j] == 28 && dungeon[i + 1][j] == 23 && dungeon[i + 1][j + 1] == 3)
+			else if (dungeon[i][j] == 28 && dungeon[i + 1][j] == 23 && dungeon[i + 1][j + 1] == 3)
 				dungeon[i + 1][j] = 16;
 		}
 	}
 	for (j = 0; j < DMAXY; j++) {
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 10)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 17 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 17 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 4)
+			else if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 4)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 17 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 17 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 9)
+			else if (dungeon[i][j] == 29 && dungeon[i][j + 1] == 9)
 				dungeon[i][j + 1] = 10;
-			if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 13 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 9 && dungeon[i][j + 1] == 16)
+			else if (dungeon[i][j] == 9 && dungeon[i][j + 1] == 16)
 				dungeon[i][j + 1] = 13;
-			if (dungeon[i][j] == 10 && dungeon[i][j + 1] == 16)
+			else if (dungeon[i][j] == 10 && dungeon[i][j + 1] == 16)
 				dungeon[i][j + 1] = 13;
-			if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 3)
+			else if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 3)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 11 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 11 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 3 && dungeon[i + 1][j - 1] == 16)
+			else if (dungeon[i][j] == 10 && dungeon[i + 1][j] == 3 && dungeon[i + 1][j - 1] == 16)
 				dungeon[i + 1][j] = 12;
-			if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 5)
+			else if (dungeon[i][j] == 16 && dungeon[i][j + 1] == 5)
 				dungeon[i][j + 1] = 12;
-			if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 6)
+			else if (dungeon[i][j] == 1 && dungeon[i][j + 1] == 6)
 				dungeon[i][j + 1] = 4;
-			if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 13 && dungeon[i][j + 1] == 10)
+			else if (dungeon[i][j] == 21 && dungeon[i + 1][j] == 13 && dungeon[i][j + 1] == 10)
 				dungeon[i + 1][j + 1] = 12;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 10)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 10)
 				dungeon[i + 1][j] = 17;
-			if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 11)
+			else if (dungeon[i][j] == 22 && dungeon[i][j + 1] == 11)
 				dungeon[i][j + 1] = 17;
-			if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 16)
+			else if (dungeon[i][j] == 15 && dungeon[i + 1][j] == 28 && dungeon[i + 2][j] == 16)
 				dungeon[i + 1][j] = 23;
-			if (dungeon[i][j] == 28 && dungeon[i + 1][j] == 23 && dungeon[i + 1][j + 1] == 1 && dungeon[i + 2][j] == 6)
+			else if (dungeon[i][j] == 28 && dungeon[i + 1][j] == 23 && dungeon[i + 1][j + 1] == 1 && dungeon[i + 2][j] == 6)
 				dungeon[i + 1][j] = 16;
 		}
 	}
@@ -1790,32 +1774,33 @@ void DRLG_L4FloodTVal()
 void DRLG_L4FTVR(int i, int j, int x, int y, int d)
 {
 	if (dTransVal[x][y] != 0 || dungeon[i][j] != 6) {
+		// substituição de if's por else if
 		if (d == 1) {
 			dTransVal[x][y] = TransVal;
 			dTransVal[x][y + 1] = TransVal;
 		}
-		if (d == 2) {
+		else if (d == 2) {
 			dTransVal[x + 1][y] = TransVal;
 			dTransVal[x + 1][y + 1] = TransVal;
 		}
-		if (d == 3) {
+		else if (d == 3) {
 			dTransVal[x][y] = TransVal;
 			dTransVal[x + 1][y] = TransVal;
 		}
-		if (d == 4) {
+		else if (d == 4) {
 			dTransVal[x][y + 1] = TransVal;
 			dTransVal[x + 1][y + 1] = TransVal;
 		}
-		if (d == 5) {
+		else if (d == 5) {
 			dTransVal[x + 1][y + 1] = TransVal;
 		}
-		if (d == 6) {
+		else if (d == 6) {
 			dTransVal[x][y + 1] = TransVal;
 		}
-		if (d == 7) {
+		else if (d == 7) {
 			dTransVal[x + 1][y] = TransVal;
 		}
-		if (d == 8) {
+		else if (d == 8) {
 			dTransVal[x][y] = TransVal;
 		}
 	} else {
@@ -1842,6 +1827,7 @@ void DRLG_L4TransFix()
 	for (j = 0; j < DMAXY; j++) {
 		xx = 16;
 		for (i = 0; i < DMAXX; i++) {
+			// substituição de if's por else if
 			if (IsDURWall(dungeon[i][j]) && dungeon[i][j - 1] == 18) {
 				dTransVal[xx + 1][yy] = dTransVal[xx][yy];
 				dTransVal[xx + 1][yy + 1] = dTransVal[xx][yy];
@@ -1854,20 +1840,20 @@ void DRLG_L4TransFix()
 				dTransVal[xx + 1][yy] = dTransVal[xx][yy];
 				dTransVal[xx + 1][yy + 1] = dTransVal[xx][yy];
 			}
-			if (dungeon[i][j] == 19) {
+			else if (dungeon[i][j] == 19) {
 				dTransVal[xx][yy + 1] = dTransVal[xx][yy];
 				dTransVal[xx + 1][yy + 1] = dTransVal[xx][yy];
 			}
-			if (dungeon[i][j] == 24) {
+			else if (dungeon[i][j] == 24) {
 				dTransVal[xx + 1][yy] = dTransVal[xx][yy];
 				dTransVal[xx][yy + 1] = dTransVal[xx][yy];
 				dTransVal[xx + 1][yy + 1] = dTransVal[xx][yy];
 			}
-			if (dungeon[i][j] == 57) {
+			else if (dungeon[i][j] == 57) {
 				dTransVal[xx - 1][yy] = dTransVal[xx][yy + 1];
 				dTransVal[xx][yy] = dTransVal[xx][yy + 1];
 			}
-			if (dungeon[i][j] == 53) {
+			else if (dungeon[i][j] == 53) {
 				dTransVal[xx][yy - 1] = dTransVal[xx + 1][yy];
 				dTransVal[xx][yy] = dTransVal[xx + 1][yy];
 			}
